@@ -1,43 +1,38 @@
 import { module, test } from 'qunit';
-import { visit, currentURL } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
+import { 
+  click,
+  visit, 
+  currentURL 
+} from '@ember/test-helpers';
 
 module('Acceptance | list rentals', function(hooks) {
   setupApplicationTest(hooks);
 
-  test('should show rentals as the home page', function(assert){
-    visit('/');
-    andThen(function() {
-      assert.equal(currentURL(), '/rentals', 'should redirect automatically');
-    })
+  test('should show rentals as the home page', async function(assert){
+    await visit('/');
+    assert.equal(currentURL(), '/rentals', 'should redirect automatically');
   });
 
-  test('should link to information about the company', function(assert) {
-
+  test('should link to information about the company', async function(assert) {
+    await visit('/');
+    await click(".menu-about");
+    assert.equal(currentURL(), '/about', 'should navigate to about')
   });
 
-  test('should link to contact information.', function(assert) {
+  // test('should link to contact information.', function(assert) {
 
-  });
-
-  test('should list available rentals.', function(assert){
-
-  });
-  
-  test('should fliter the list of rentals by city.', function(assert){
-
-  });
-
-  test('should show details for a selected rental', function(assert) {
-    
-  })
-
-  // // test('visiting /list-rentals', async function(assert) {
-  // test('visiting /', async function(assert) {
-  //   // await visit('/list-rentals');
-  //   await visit('/');
-
-  //   // assert.equal(currentURL(), '/list-rentals');
-  //   assert.equal(currentURL(), '/');
   // });
+
+  // test('should list available rentals.', function(assert){
+
+  // });
+  
+  // test('should fliter the list of rentals by city.', function(assert){
+
+  // });
+
+  // test('should show details for a selected rental', function(assert) {
+    
+  // })
 });
