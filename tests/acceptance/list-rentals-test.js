@@ -20,13 +20,16 @@ module('Acceptance | list rentals', function(hooks) {
     assert.equal(currentURL(), '/about', 'should navigate to about')
   });
 
-  // test('should link to contact information.', function(assert) {
+  test('should link to contact information.', async function(assert) {
+    await visit('/');
+    await click(".menu-contact");
+    assert.equal(currentURL(), '/contact', 'should navigate to contact')
+  });
 
-  // });
-
-  // test('should list available rentals.', function(assert){
-
-  // });
+  test('should list available rentals.', async function(assert){
+    await visit('/');
+    assert.equal(this.element.querySelectorAll('.listing').length, 3, 'should see 3 listings');
+  });
   
   // test('should fliter the list of rentals by city.', function(assert){
 

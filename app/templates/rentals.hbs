@@ -7,4 +7,6 @@
   {{/link-to}}
 </div>
 
-{{!-- {{outlet}} --}}
+{{#each model as |rentalUnit|}}
+  {{rental-listing rental=rentalUnit}}
+{{/each}}
