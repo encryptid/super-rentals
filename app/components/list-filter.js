@@ -4,19 +4,43 @@ export default Component.extend({
   classNames: ['list-filter'],
   value: '',
 
+  // v2.18
+  // init() {
+  //   this._super(...arguments);
+  //   this.get('filter')('').then((allResults) => {
+  //     this.set('results', allResults.results);
+  //   });
+
+  // v3.x
   init() {
     this._super(...arguments);
-    this.get('filter')('').then((allResults) => {
+    // this.filter('').then((results) => this.set('results', results));
+    this.filter('').then((allResults) => {
       this.set('results', allResults.results);
     });
   },
 
+  //v2.18
+  // actions: {
+  //   handleFilterEntry() {
+  //     let filterInputValue = this.get('value');
+  //     let filterAction = this.get('filter');
+  //     filterAction(filterInputValue).then((filterResults) => {
+  //       if (filterResults.query === this.get('value')) {
+  //         this.set('results', filterResults.results);
+  //       }
+  //     });
+  //   }
+  // }
+
+  //v3.x
   actions: {
     handleFilterEntry() {
-      let filterInputValue = this.get('value');
-      let filterAction = this.get('filter');
+      let filterInputValue = this.value;
+      let filterAction = this.filter;
+      // filterAction(filterInputValue).then((filterResults) => this.set('results', filterResults));
       filterAction(filterInputValue).then((filterResults) => {
-        if (filterResults.query === this.get('value')) {
+        if (filterResults.query === this.value) {
           this.set('results', filterResults.results);
         }
       });
